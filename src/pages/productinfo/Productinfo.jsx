@@ -14,7 +14,6 @@ function ProductInfo() {
   const [selectedWeight, setSelectedWeight] = useState(localStorage.getItem(`selectedWeight-${id}`) || null);
   const [selectedFlavor, setSelectedFlavor] = useState(localStorage.getItem(`selectedFlavor-${id}`) || null);
   const [mainImage, setMainImage] = useState(null);
-  const [showFullDescription, setShowFullDescription] = useState(false);
   const [isMagnifying, setIsMagnifying] = useState(false);
   const [magnifyPos, setMagnifyPos] = useState({ x: 0, y: 0 });
   const dispatch = useDispatch();
@@ -99,14 +98,16 @@ function ProductInfo() {
     setIsMagnifying(false);
   };
 
+  const handleThumbnailClick = (image) => {
+    setMainImage(image);
+  };
+
   const handleBackButtonClick = () => {
     navigate(-1);
   };
 
   // Loading state before product data is fetched
   if (!product) return <p>Loading...</p>;
-
-  const isDescriptionLong = product.description.length > 500;
 
   return (
     <Layout>
@@ -157,7 +158,7 @@ function ProductInfo() {
                     src={image}
                     alt={`Product Image ${index + 1}`}
                     className="object-cover w-48 h-48 cursor-pointer mb-1 border border-gray-300 rounded-md hover:opacity-75 transition duration-300"
-                    onClick={() => handleImageClick(image)}
+                    onClick={() => handleThumbnailClick(image)} // Update the main image on click
                   />
                 ))}
               </div>
@@ -168,18 +169,10 @@ function ProductInfo() {
               <h2 className="text-sm title-font text-gray-500 tracking-widest">{product.brand}</h2>
               <h1 className="text-gray-900 text-2xl md:text-3xl title-font font-medium mb-1">{product.title}</h1>
 
-              {/* Description with "Read More" button */}
-              <p className={`leading-relaxed border-b-2 mb-5 pb-5 text-sm md:text-base ${showFullDescription ? '' : 'max-h-36 overflow-hidden'}`}>
+              {/* Description */}
+              <p className="leading-relaxed border-b-2 mb-5 pb-5 text-sm md:text-base">
                 {product.description}
               </p>
-              {isDescriptionLong && (
-                <button
-                  onClick={toggleDescription}
-                  className="text-indigo-500 text-sm hover:underline"
-                >
-                  {showFullDescription ? 'Read Less' : 'Read More'}
-                </button>
-              )}
 
               {/* Price and Discounted Price */}
               <div className="flex items-center mb-4">
