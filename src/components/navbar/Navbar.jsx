@@ -5,7 +5,7 @@ import { FaShoppingCart, FaSearch } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { BsFillCloudSunFill } from 'react-icons/bs';
 import myContext from '../../context/data/myContext';
-import R1 from '../../assets/Images/R1.jpg';
+import R1 from '../../assets/Images/R1.jpeg';
 
 
 
@@ -218,7 +218,7 @@ export default function Navbar() {
                   <img
                     src={R1}
                     alt="Logo"
-                    className="h-auto max-h-8 sm:max-h-10 md:max-h-12 lg:max-h-14 xl:max-h-16 w-auto max-w-full mx-2 object-contain"
+                    className="h-auto max-h-8 sm:max-h-16 md:max-h-12 lg:max-h-14 xl:max-h-16 w-auto max-w-full mx-2 object-contain"
                   />
                 </div>
                 <Link to={'/'} className="flex items-center ml-4">

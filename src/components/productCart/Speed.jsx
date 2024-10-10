@@ -57,12 +57,13 @@ const ProductCard = ({ product }) => {
       dispatch(addToCart({
         id: product.id,
         title: product.title,
-        imageUrl: product.imageUrl,
+        imageUrl: product.imageUrls[0],
         price: product.price1,
         flavour: selectedFlavour,
         weight: selectedWeight,
         quantity,
-      }));
+      }));  
+      
       setAddedToCart(true);
       localStorage.setItem(`product-quantity-${product.id}`, quantity);
     } else {

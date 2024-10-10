@@ -100,6 +100,7 @@ const OrdersComponent = () => {
                     <p className="text-gray-600"><strong>Address:</strong> {order.addressInfo.address}</p>
                     <p className="text-gray-600"><strong>Phone:</strong> {order.addressInfo.phoneNumber}</p>
                     <p className="text-gray-600"><strong>Pincode:</strong> {order.addressInfo.pincode}</p>
+                    <p className="text-gray-600"><strong>Pincode:</strong> {order.addressInfo.date}</p>
                   </div>
 
                   {/* Order Status Progress */}

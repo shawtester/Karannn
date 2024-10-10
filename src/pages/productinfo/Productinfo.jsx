@@ -5,6 +5,7 @@ import { fireDB } from '../../firebase/FirebaseConfig';
 import Layout from '../../components/layout/Layout';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
+import Footer from '../../components/footer/Footer';
 import './Product.css'; // External CSS for animation and styles
 
 function ProductInfo() {
@@ -16,6 +17,7 @@ function ProductInfo() {
   const [mainImage, setMainImage] = useState(null);
   const [isMagnifying, setIsMagnifying] = useState(false);
   const [magnifyPos, setMagnifyPos] = useState({ x: 0, y: 0 });
+  const [showFullDescription, setShowFullDescription] = useState(false); // New state for toggling description
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -58,6 +60,7 @@ function ProductInfo() {
         price: priceToUse,
         flavour: selectedFlavor,
         weight: selectedWeight,
+        imageUrl: product.imageUrls[0],
         quantity,
       }));
     }
@@ -108,6 +111,12 @@ function ProductInfo() {
 
   // Loading state before product data is fetched
   if (!product) return <p>Loading...</p>;
+
+  // Handle the description display with 'Read More'
+  const toggleDescription = () => setShowFullDescription(!showFullDescription);
+
+  const description = product.description;
+  const isDescriptionLong = description.length > 300;
 
   return (
     <Layout>
@@ -171,7 +180,15 @@ function ProductInfo() {
 
               {/* Description */}
               <p className="leading-relaxed border-b-2 mb-5 pb-5 text-sm md:text-base">
-                {product.description}
+                {showFullDescription ? description : description.slice(0, 300)}
+                {isDescriptionLong && (
+                  <span
+                    onClick={toggleDescription}
+                    className="text-indigo-500 cursor-pointer ml-2"
+                  >
+                    {showFullDescription ? 'Read Less' : 'Read More'}
+                  </span>
+                )}
               </p>
 
               {/* Price and Discounted Price */}
@@ -189,7 +206,7 @@ function ProductInfo() {
                   {product.weight1 && (
                     <button
                       onClick={() => handleWeightSelect(product.weight1)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight1 ? 'bg-indigo-500 text-white' : 'text-gray-700'}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight1 ? 'bg-indigo-500 text-white' : ''}`}
                     >
                       {product.weight1}
                     </button>
@@ -197,7 +214,7 @@ function ProductInfo() {
                   {product.weight2 && (
                     <button
                       onClick={() => handleWeightSelect(product.weight2)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight2 ? 'bg-indigo-500 text-white' : 'text-gray-700'}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight2 ? 'bg-indigo-500 text-white' : ''}`}
                     >
                       {product.weight2}
                     </button>
@@ -212,7 +229,7 @@ function ProductInfo() {
                   {product.flavour1 && (
                     <button
                       onClick={() => handleFlavorSelect(product.flavour1)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour1 ? 'bg-indigo-500 text-white' : 'text-gray-700'}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour1 ? 'bg-indigo-500 text-white' : ''}`}
                     >
                       {product.flavour1}
                     </button>
@@ -220,7 +237,7 @@ function ProductInfo() {
                   {product.flavour2 && (
                     <button
                       onClick={() => handleFlavorSelect(product.flavour2)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour2 ? 'bg-indigo-500 text-white' : 'text-gray-700'}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour2 ? 'bg-indigo-500 text-white' : ''}`}
                     >
                       {product.flavour2}
                     </button>
@@ -229,21 +246,12 @@ function ProductInfo() {
               </div>
 
               {/* Quantity Selector */}
-              <div className="flex items-center mb-4">
-                <span className="mr-4">Quantity:</span>
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="border border-gray-300 rounded-md w-16 text-center"
-                  min="1"
-                />
-              </div>
+             
 
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className="bg-indigo-500 text-white px-6 py-2 rounded-md hover:bg-indigo-600 transition duration-200"
+                className="bg-indigo-500 text-white py-2 px-6 rounded-md mt-4 hover:bg-indigo-600 transition duration-300"
               >
                 Add to Cart
               </button>
@@ -251,6 +259,7 @@ function ProductInfo() {
           </div>
         </div>
       </section>
+      <Footer/>
     </Layout>
   );
 }
