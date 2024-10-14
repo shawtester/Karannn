@@ -6,7 +6,7 @@ import Layout from '../../components/layout/Layout';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import Footer from '../../components/footer/Footer';
-import './Product.css'; // External CSS for animation and styles
+import './Product.css';
 
 function ProductInfo() {
   const { id } = useParams();
@@ -21,7 +21,6 @@ function ProductInfo() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Fetch product details from Firebase
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -105,10 +104,6 @@ function ProductInfo() {
     setMainImage(image);
   };
 
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
-
   // Loading state before product data is fetched
   if (!product) return <p>Loading...</p>;
 
@@ -118,19 +113,44 @@ function ProductInfo() {
   const description = product.description;
   const isDescriptionLong = description.length > 300;
 
+  // Handle the go back function
+  const handleGoBack = () => {
+    const category = localStorage.getItem('productCategory');
+    console.log('Category from localStorage:', category);
+  
+    navigate(-1);
+  
+    // Use a timeout to wait for the navigation to complete before scrolling
+    setTimeout(() => {
+      if (category) {
+        const section = document.getElementById(category);
+        console.log('Scrolling to section:', section); // Debug log
+        if (section) {
+          window.scrollTo(0, section.offsetTop); // Scroll to the section's top position
+        } else {
+          console.error('No section found with ID:', category); // Log error if section is not found
+        }
+      } else {
+        window.scrollTo(0, 0); // Default scroll position if no category is found
+      }
+    }, 100); // Adjust the timeout duration as needed
+  };
+  
+  
+  
+  
+  
   return (
     <Layout>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-10 mx-auto">
-          {/* Back Button */}
+          
+          {/* Go Back Button */}
           <button
-            onClick={handleBackButtonClick}
-            className="mb-4 flex items-center text-gray-700 hover:text-gray-900 focus:outline-none"
+            onClick={handleGoBack}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mb-4 hover:bg-gray-400 transition duration-300"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-            <span className="text-sm md:text-base">Back</span>
+            Go Back
           </button>
 
           <div className="lg:w-4/5 mx-auto flex flex-wrap flex-col md:flex-row">
@@ -206,7 +226,7 @@ function ProductInfo() {
                   {product.weight1 && (
                     <button
                       onClick={() => handleWeightSelect(product.weight1)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight1 ? 'bg-indigo-500 text-white' : ''}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight1 ? 'bg-indigo-600 text-white' : ''}`}
                     >
                       {product.weight1}
                     </button>
@@ -214,11 +234,12 @@ function ProductInfo() {
                   {product.weight2 && (
                     <button
                       onClick={() => handleWeightSelect(product.weight2)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight2 ? 'bg-indigo-500 text-white' : ''}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedWeight === product.weight2 ? 'bg-indigo-600 text-white' : ''}`}
                     >
                       {product.weight2}
                     </button>
                   )}
+                  {/* Add more buttons if needed */}
                 </div>
               </div>
 
@@ -229,7 +250,7 @@ function ProductInfo() {
                   {product.flavour1 && (
                     <button
                       onClick={() => handleFlavorSelect(product.flavour1)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour1 ? 'bg-indigo-500 text-white' : ''}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour1 ? 'bg-indigo-600 text-white' : ''}`}
                     >
                       {product.flavour1}
                     </button>
@@ -237,21 +258,19 @@ function ProductInfo() {
                   {product.flavour2 && (
                     <button
                       onClick={() => handleFlavorSelect(product.flavour2)}
-                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour2 ? 'bg-indigo-500 text-white' : ''}`}
+                      className={`bg-gray-200 px-4 py-2 rounded-md ${selectedFlavor === product.flavour2 ? 'bg-indigo-600 text-white' : ''}`}
                     >
                       {product.flavour2}
                     </button>
                   )}
+                  {/* Add more buttons if needed */}
                 </div>
               </div>
-
-              {/* Quantity Selector */}
-             
 
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className="bg-indigo-500 text-white py-2 px-6 rounded-md mt-4 hover:bg-indigo-600 transition duration-300"
+                className="bg-indigo-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-indigo-700 transition duration-300"
               >
                 Add to Cart
               </button>
@@ -259,7 +278,7 @@ function ProductInfo() {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </Layout>
   );
 }

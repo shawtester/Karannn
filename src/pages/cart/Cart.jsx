@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import myContext from '../../context/data/myContext';
 import Layout from '../../components/layout/Layout';
-import Model from '../../components/model/Model'; // Import Model component
-import SparkEffect from './SparkEffect'; // Import SparkEffect
+import Model from '../../components/model/Model'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../../redux/cartSlice'; 
 import { toast } from 'react-toastify';
@@ -30,7 +29,7 @@ function Cart() {
     setTotalAmount(temp);
   }, [cartItems]);
 
-  const shipping = 100; 
+  const shipping = 0; 
   const grandTotal = shipping + (discountedAmount ?? totalAmount); // Include discount if applied
 
   const deleteCart = (item) => {

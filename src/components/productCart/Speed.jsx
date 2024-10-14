@@ -4,15 +4,12 @@ import { useDispatch } from 'react-redux';
 import { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } from '../../redux/cartSlice';
 
 const ProductCard = ({ product }) => {
-  
-  
   const [quantity, setQuantity] = useState(1);
   const [selectedFlavour, setSelectedFlavour] = useState(product.flavour1);
   const [selectedWeight, setSelectedWeight] = useState(product.weight1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [timer, setTimer] = useState('');
   const [rating, setRating] = useState(4.5);
-  
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,8 +29,6 @@ const ProductCard = ({ product }) => {
     const updateTimer = () => {
       const now = new Date();
       const midnight = new Date(now);
-      
-      
       midnight.setHours(24, 0, 0, 0);
       const distance = midnight - now;
 
@@ -52,7 +47,6 @@ const ProductCard = ({ product }) => {
   }, []);
 
   const handleAddToCart = () => {
-    
     if (quantity > 0) {
       dispatch(addToCart({
         id: product.id,
@@ -62,7 +56,7 @@ const ProductCard = ({ product }) => {
         flavour: selectedFlavour,
         weight: selectedWeight,
         quantity,
-      }));  
+      }));
       
       setAddedToCart(true);
       localStorage.setItem(`product-quantity-${product.id}`, quantity);
@@ -91,9 +85,22 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  // Store scroll position and navigate
+
+
   const handleImageClick = () => {
-    navigate(`/productinfo/${product.id}`);
+    const category = product.category;
+    const id = product.id;
+    console.log(id);
+    
+    console.log(category);
+    
+    localStorage.setItem('productCategory', category); // Store the category name
+    console.log('Category saved:', category); // Debug log
+    navigate(`/productinfo/${id}`); // Navigate to product info
   };
+  
+  
 
   const handleFlavourClick = (flavour, e) => {
     e.stopPropagation();
@@ -160,7 +167,7 @@ const ProductCard = ({ product }) => {
               onClick={(e) => handleWeightClick(product.weight1, e)}
               className={`cursor-pointer px-2 py-1 rounded-md ${selectedWeight === product.weight1 ? 'bg-blue-100 text-blue-500' : 'bg-gray-100 text-gray-700'} hover:bg-blue-200 transition duration-300`}
             >
-              {product.weight1} 
+              {product.weight1}
             </span>
           )}
           {product.weight2 && (
@@ -168,7 +175,7 @@ const ProductCard = ({ product }) => {
               onClick={(e) => handleWeightClick(product.weight2, e)}
               className={`cursor-pointer px-2 py-1 rounded-md ${selectedWeight === product.weight2 ? 'bg-blue-100 text-blue-500' : 'bg-gray-100 text-gray-700'} hover:bg-blue-200 transition duration-300`}
             >
-              {product.weight2} 
+              {product.weight2}
             </span>
           )}
         </div>

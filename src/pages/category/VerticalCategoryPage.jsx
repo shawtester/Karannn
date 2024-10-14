@@ -63,6 +63,7 @@ const VerticalPriceDropsSlider = () => {
     dispatch(
       addToCart({
         ...product,
+        imageUrl: product.imageUrls[0],
         ...selectedOption,
         quantity: 1,
         price: priceToUse,
@@ -92,6 +93,7 @@ const VerticalPriceDropsSlider = () => {
       },
     }));
   };
+  
 
   return (
     <Layout>
@@ -117,6 +119,7 @@ const VerticalPriceDropsSlider = () => {
                   <img
                     src={product.imageUrls[0]}
                     alt={product.title}
+                    
                     className="w-full h-full object-cover:contain rounded"
                   />
                 </div>

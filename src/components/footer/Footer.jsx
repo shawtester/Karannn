@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa'; // Imported FaFacebook
 
 const Footer = () => {
   return (
@@ -41,7 +41,10 @@ const Footer = () => {
               Email: <a href="mailto:info@supplementadda.in" className="text-blue-400 hover:text-blue-300"> info@supplementadda.in</a>
             </p>
             <p className="text-lg">
-              Phone: <a href="tel:+919315214742" className="text-blue-400 hover:text-blue-300">+919315214742</a>
+              Phone 1: <a href="tel:+919315214742" className="text-blue-400 hover:text-blue-300">+919315214742</a>
+            </p>
+            <p className="text-lg">
+              Phone 2: <a href="tel:+919650501998" className="text-blue-400 hover:text-blue-300">+919650501998</a> {/* Added second number */}
             </p>
           </div>
         </div>
@@ -53,6 +56,9 @@ const Footer = () => {
           </a>
           <a href="#" className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
             <FaYoutube size={28} />
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61555631020340&mibextid=LQQJ4d" target='_blank' className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110"> {/* Added Facebook link */}
+            <FaFacebook size={28} />
           </a>
         </div>
       </div>
