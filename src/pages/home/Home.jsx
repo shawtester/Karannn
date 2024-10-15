@@ -12,25 +12,28 @@ import Certificate from '../../components/certificate/Certificate';
 
 const Home = () => {
   useEffect(() => {
+    
+ 
+
     const category = localStorage.getItem('productCategory');
     const adjustedScrollPosition = localStorage.getItem('adjustedScrollPosition');
 
-    // Debug log to check retrieved values
-    console.log('Adjusted scroll position:', adjustedScrollPosition);
-    console.log('Category from localStorage:', category);
 
+    
+    localStorage.removeItem('adjustedScrollPosition'); 
+
+    
     if (adjustedScrollPosition) {
-      window.scrollTo(0, parseInt(adjustedScrollPosition));
-      localStorage.removeItem('adjustedScrollPosition'); // Clean up
+      window.scrollTo(0, parseInt(adjustedScrollPosition)); 
     } else if (category) {
       const section = document.getElementById(category);
       if (section) {
-        window.scrollTo(0, section.offsetTop); // Scroll to the section's top position
+        window.scrollTo(0, section.offsetTop); 
       }
-    } else {
-      window.scrollTo(0, 0); // Default scroll position if no category is found
     }
-  }, []);
+    window.scrollTo(0, 0);
+  }, []); 
+
   return (
     <Layout>
       <MiniCarousel />
@@ -45,31 +48,29 @@ const Home = () => {
       <div id="Creatine">
         <ProductCart category="Creatine" heading="Category Creatine" />
       </div>
-      <Certificate/>
-    
+      <Certificate />
+
       <div id="Nitrix-Oxide">
         <ProductCart category="Nitrix-Oxide" heading="Category Nitrix-Oxide" />
       </div>
       <div id="Weight-Loss">
         <ProductCart category="Weight-Loss" heading="Category Weight-Loss" />
       </div>
-      <ShopByCategory/>
+      <ShopByCategory />
 
       <div id="Pre-workout">
-        <ProductCart category="Pre-Workout" heading="Category Pre-Workout"/>
-
+        <ProductCart category="Pre-Workout" heading="Category Pre-Workout" />
       </div>
       <div id="BCAA-Aminos">
-        <ProductCart category="BCAA-Aminos" heading="Category BCAA-Aminos"/>
+        <ProductCart category="BCAA-Aminos" heading="Category BCAA-Aminos" />
       </div>
-      <ShowImages/>
+      <ShowImages />
       <div id="Gainers">
-        <ProductCart category="Gainers" heading="Category Gainers"/>
+        <ProductCart category="Gainers" heading="Category Gainers" />
       </div>
       <div id="Glutamine">
-        <ProductCart category="Glutamine" heading="Category Glutamine"/>
+        <ProductCart category="Glutamine" heading="Category Glutamine" />
       </div>
-
 
       <Testimonial />
       <Track />

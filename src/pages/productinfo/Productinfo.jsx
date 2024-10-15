@@ -146,12 +146,17 @@ function ProductInfo() {
         <div className="container px-5 py-10 mx-auto">
           
           {/* Go Back Button */}
-          <button
-            onClick={handleGoBack}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mb-4 hover:bg-gray-400 transition duration-300"
-          >
-            Go Back
-          </button>
+          <button 
+          className="mb-6 px-8 py-3 text-white font-bold rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-opacity-75"
+          style={{
+            backgroundColor: '#FF6347', // Default color
+          }}
+          onMouseEnter={(e) => e.target.style.backgroundColor = '#F87171'} 
+          onMouseLeave={(e) => e.target.style.backgroundColor = '#FF6347'} 
+          onClick={handleGoBack} 
+        >
+          Go Back
+        </button>
 
           <div className="lg:w-4/5 mx-auto flex flex-wrap flex-col md:flex-row">
             {/* Left Side with Main Image */}
