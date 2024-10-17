@@ -6,24 +6,28 @@ const initialState = {
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: {
+    cartItems: [],
+  },
   reducers: {
-    
     addToCart: (state, action) => {
-      const newProduct = action.payload;
-      const existingItemIndex = state.cartItems.findIndex(item => item.id === newProduct.id);
+      const item = action.payload;
 
-      if (existingItemIndex !== -1) {
-        
-        state.cartItems[existingItemIndex].quantity += 1;
+      // Check if the product with the same id, weight, and flavor (or 'N/A') is already in the cart
+      const existingItem = state.cartItems.find(
+        cartItem =>
+          cartItem.id === item.id &&
+          cartItem.weight === item.weight &&
+          cartItem.flavour === (item.flavour || 'N/A')
+      );
+
+      if (existingItem) {
+        // If the item exists, increase the quantity
+        existingItem.quantity += item.quantity;
       } else {
-        
-        state.cartItems.push({ ...newProduct, quantity: 1 });
+        // If it's a new item, add it to the cart
+        state.cartItems.push({ ...item });
       }
-
-      
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-      
     },
     
     

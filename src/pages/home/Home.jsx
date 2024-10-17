@@ -31,7 +31,7 @@ const Home = () => {
         window.scrollTo(0, section.offsetTop); 
       }
     }
-    window.scrollTo(0, 0);
+
   }, []); 
 
   return (

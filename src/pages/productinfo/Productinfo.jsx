@@ -20,7 +20,6 @@ function ProductInfo() {
   const [showFullDescription, setShowFullDescription] = useState(false); // New state for toggling description
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -30,40 +29,43 @@ function ProductInfo() {
           const productData = docSnap.data();
           setProduct(productData);
           setMainImage(productData.imageUrls[0]);
-
-          // Initialize weight and flavor selection from product data
-          if (!selectedWeight) {
-            setSelectedWeight(productData.weight1);
-            localStorage.setItem(`selectedWeight-${id}`, productData.weight1);
-          }
-          if (!selectedFlavor) {
-            setSelectedFlavor(productData.flavour1);
-            localStorage.setItem(`selectedFlavor-${id}`, productData.flavour1);
-          }
-        } else {
-          console.log(`Product with ID ${id} does not exist.`);
+  
+          // Reset weight and flavor when switching products
+          setSelectedWeight(productData.weight1);
+          setSelectedFlavor(productData.flavour1);
+          localStorage.setItem(`selectedWeight-${id}`, productData.weight1);
+          localStorage.setItem(`selectedFlavor-${id}`, productData.flavour1);
         }
       } catch (error) {
         console.error('Error fetching product:', error);
       }
     };
     fetchProduct();
-  }, [id, selectedWeight, selectedFlavor]);
+  }, [id]);
+  
 
-  // Handle adding product to the cart with selected flavor, weight, and quantity
-  const handleAddToCart = () => {
-    if (product && selectedWeight && selectedFlavor) {
-      const priceToUse = product.price1;
-      dispatch(addToCart({
-        ...product,
-        price: priceToUse,
-        flavour: selectedFlavor,
-        weight: selectedWeight,
-        imageUrl: product.imageUrls[0],
-        quantity,
-      }));
-    }
-  };
+  
+// Handle adding product to the cart with selected flavor, weight, and quantity
+const handleAddToCart = () => {
+  if (product && selectedWeight) {
+    // Create a unique cart item based on product id, weight, and flavor
+    const cartItem = {
+      id: product.id,  // Ensure this is the unique ID of the product
+      title: product.title,
+      price: product.price1,  // Use the appropriate price for the selected variant
+      weight: selectedWeight,
+      flavour: selectedFlavor,
+      quantity,
+      imageUrl: product.imageUrls[0],  // Use the first image for the cart
+    };
+
+    // Dispatch the action to add this specific product variation to the cart
+    dispatch(addToCart(cartItem));
+  } else {
+    console.log('Product, weight, or flavor is not selected');
+  }
+};
+
 
   // Handle weight selection
   const handleWeightSelect = (weight) => {
