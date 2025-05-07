@@ -38,7 +38,7 @@ import VerticalCategoryPage from './pages/category/VerticalCategoryPage';
 import Testimonial from './components/testimonial/Testimonial';
 import Certificate from './components/certificate/Certificate';
 import StickyPhone from './components/phonenumber/StickyPhone';
-import TermsAndConditions from './components/footer/TermandCondition';
+import TermsAndConditions from './components/footer/TermsandCondition';
 import Privacy from './components/footer/Privacy'
 
 
@@ -94,7 +94,7 @@ const App = () => {
 <Route path='/search' element={<Search/>}/>
 <Route path='/about' element={<About/>}/>
 <Route path='/contact' element={<Contact/>}/>
-<Route path='TermandCondition' element={<TermsAndConditions/>}/>
+<Route path='TermsandCondition' element={<TermsAndConditions/>}/>
 <Route path='/ordertracking0102' element={<OrderTracking0102/>}/>
 <Route path='/Privacy' element={<Privacy/>}/>
 
