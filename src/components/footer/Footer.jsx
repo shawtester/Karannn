@@ -32,7 +32,7 @@ const Footer = () => {
                 <a href="/contact" className="text-gray-300 hover:text-blue-400 transition duration-300 text-lg">Contact</a>
               </li>
               <li>
-                <a href="/TermandCondition" className="text-gray-300 hover:text-blue-400 transition duration-300 text-lg">Term and Condition</a>
+                <a href="/TermandCondition" className="text-gray-300 hover:text-blue-400 transition duration-300 text-lg">Terms and Condition</a>
               </li>
             </ul>
           </div>
