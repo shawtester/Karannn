@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-100 py-16">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* About Us Section */}
+          
           <div>
             <h2 className="text-3xl font-extrabold mb-4 text-white">About Us</h2>
             <p className="mb-4 leading-relaxed">
@@ -63,7 +63,7 @@ const Footer = () => {
           <a href="#" className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
             <FaYoutube size={28} />
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61555631020340&mibextid=LQQJ4d" target='_blank' className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110"> {/* Added Facebook link */}
+          <a href="https://www.facebook.com/profile.php?id=61555631020340&mibextid=LQQJ4d" target='_blank' className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
             <FaFacebook size={28} />
           </a>
         </div>
