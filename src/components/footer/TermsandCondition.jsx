@@ -68,7 +68,8 @@ const sections = [
   },
   {
     title: "7. Returns & Refunds",
-    content: "Returns are accepted within 7 days of delivery if the item is unused and sealed. Refunds are processed within 5–7 working days after verification. Shipping charges are non-refundable."
+content: "Returns are accepted within 7 days of delivery if the item is unused and sealed. Refunds are processed within 3–5 working days after verification. Shipping charges are non-refundable. The refunded amount will be credited to your account within 2–3 working days after processing."
+
   },
   {
     title: "8. User Account",
