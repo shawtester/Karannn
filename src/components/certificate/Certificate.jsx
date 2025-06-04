@@ -7,11 +7,15 @@ import './certi.css'; // Import custom styles
 // Import local images
 
 import cert3 from '../../assets/certificates/certificate3.jpg';
+import cert4 from '../../assets/certificates/certificate4.jpg';
+
 
 // Sample certificate data
 const certificates = [
  
   { id: 3, title: 'Certificate of Excellence', img: cert3 },
+    { id: 4, title: 'Certificate of Excellence', img: cert4 },
+
 ];
 
 const CertificateCarousel = () => {
