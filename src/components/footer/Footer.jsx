@@ -60,7 +60,7 @@ const Footer = () => {
           <a href="https://www.instagram.com/thesupplementadda/" target='_blank' className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
             <FaInstagram size={28} />
           </a>
-          <a href="#" className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
+          <a href="https://www.youtube.com/@Supplement_Adda" className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
             <FaYoutube size={28} />
           </a>
           <a href="https://www.facebook.com/profile.php?id=61555631020340&mibextid=LQQJ4d" target='_blank' className="text-gray-300 hover:text-red-300 transition duration-300 transform hover:scale-110">
