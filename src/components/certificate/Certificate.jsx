@@ -1,26 +1,26 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // For back navigation and checking current path
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css'; // Import Swiper styles
-import './certi.css'; // Import custom styles
+import 'swiper/swiper-bundle.css'; 
+import './certi.css';
 
 // Import local images
 
 import cert3 from '../../assets/certificates/certificate3.jpg';
-import cert4 from '../../assets/certificates/certificate4.jpg';
+
 
 
 // Sample certificate data
 const certificates = [
  
   { id: 3, title: 'Certificate of Excellence', img: cert3 },
-    { id: 4, title: 'Certificate of Excellence', img: cert4 },
+  
 
 ];
 
 const CertificateCarousel = () => {
-  const navigate = useNavigate(); // Hook to navigate back
-  const location = useLocation(); // Hook to get the current location
+  const navigate = useNavigate(); 
+  const location = useLocation(); 
 
   const handleBack = () => {
     navigate(-1); // Navigate to the previous page
